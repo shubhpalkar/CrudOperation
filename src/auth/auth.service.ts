@@ -7,6 +7,7 @@ import { UserRO } from 'src/user/userRO.RO';
 import { debug } from 'console';
 import { RegistrationStatus } from '../interface/registrationStatus.interface';
 import { CreateUserDto } from 'src/user/userDTO.dto';
+import { getMaxListeners } from 'process';
 
 @Injectable()
 export class AuthService {
@@ -54,10 +55,18 @@ export class AuthService {
   async validateUserToken(payload: JwtPayload): Promise<User> {
     return await this.usersService.findById(payload.id);
   }
-  async validateUser(email: string, password: string): Promise<UserRO> {
-    const user = await this.usersService.findByEmail(email);
-    if (user && user.comparePassword(password)) {
+  // async validateUser(email: string, password: string): Promise<UserRO> {
+
     
+   async validateUser(email: string, password: string): Promise<UserRO> {
+    const user =  await this.usersService.findByEmail(email);
+
+    if (user && user.comparePassword(password)) {
+      // const isPasswordMatching = await bcrypt.compare(
+      //   password,
+      //   user.password
+      // );
+       // if (user && (bcrypt.compare(user.password,password)) {    
       this.logger.log('password check success');
       const { password, ...result } = user;
       return result;
