@@ -30,7 +30,7 @@ export class AuthService {
   }
   createToken(user: User) {
 
-    const expiresIn = 3600;
+    const expiresIn = "3h";
 
 
     const accessToken = jwt.sign(
@@ -58,10 +58,13 @@ export class AuthService {
   // async validateUser(email: string, password: string): Promise<UserRO> {
 
     
-   async validateUser(email: string, password: string): Promise<UserRO> {
+   async validateUser(email: string, pass: string): Promise<UserRO> {
     const user =  await this.usersService.findByEmail(email);
-
-    if (user && user.comparePassword(password)) {
+   
+    if (user && user.comparePassword(pass)) {
+      console.log("old password" , user.password)
+      console.log("new password", pass)
+    //  if (user && user.password === password) {
       // const isPasswordMatching = await bcrypt.compare(
       //   password,
       //   user.password
