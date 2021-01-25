@@ -60,25 +60,6 @@ export class User {
     this.password = await bcrypt.hash(this.password, 10);
   }
 
-  async comparePassword(attempt: string) {
-
-//     const data = await bcrypt.hash(this.attempt, 10);
- return await bcrypt.compare(this.password, attempt);
-
-//   //   bcrypt.compare(this.password, attempt, function(error, isMatch) {
-//   //     if(error) {
-//   //      console.log ("User are invalid")
-//   //     }
-//   // console.log("Logged in successfull....")
-      
-//   //   });
-//   console.log ("this is new password", data);
-
-//   if (this.password === data){
-//     return  data;
-//   }
-  }
-
   toResponseObject(showToken: boolean = true): UserRO {
     const { id, firstName, lastName, email, phone } = this;
     const responseObject: UserRO = {

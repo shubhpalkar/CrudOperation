@@ -8,6 +8,7 @@ import { debug } from 'console';
 import { RegistrationStatus } from '../interface/registrationStatus.interface';
 import { CreateUserDto } from 'src/user/userDTO.dto';
 import { getMaxListeners } from 'process';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -55,27 +56,24 @@ export class AuthService {
   async validateUserToken(payload: JwtPayload): Promise<User> {
     return await this.usersService.findById(payload.id);
   }
-  // async validateUser(email: string, password: string): Promise<UserRO> {
+ 
 
+
+//  async validateUser(email: string, pass: string): Promise<UserRO> {
     
-   async validateUser(email: string, pass: string): Promise<UserRO> {
-    const user =  await this.usersService.findByEmail(email);
+//     const puser = await this.usersService.findByEmail(email)
+    
+//     const ismatching = await bcrypt.compare(pass, puser.password);
+//       if (ismatching) {
    
-    if (user && user.comparePassword(pass)) {
-      console.log("old password" , user.password)
-      console.log("new password", pass)
-    //  if (user && user.password === password) {
-      // const isPasswordMatching = await bcrypt.compare(
-      //   password,
-      //   user.password
-      // );
-       // if (user && (bcrypt.compare(user.password,password)) {    
-      this.logger.log('password check success');
-      const { password, ...result } = user;
-      return result;
-    }else {
-      return null;
-     }
-    
-  }
+//       this.logger.log('password check success');
+//       const { password, ...result } = puser;
+//       return result;
+//     } else {
+//       this.logger.log('password is not matching');
+//       return null;
+//     }
+
+  
+   
 }

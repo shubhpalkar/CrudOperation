@@ -14,12 +14,12 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
 
   private readonly logger = new Logger(AuthService.name);
 
-  async validate(username: string, password: string): Promise<any> {
-    const user = await this.authService.validateUser(username, password);
-    this.logger.log(user);
-    if (!user) {
-      throw new UnauthorizedException();
-    }
-    return user;
-  }
+  // async validate(username: string, password: string): Promise<any> {
+  //   const user = await this.authService.validateUser(username, password);
+  //   this.logger.log(user);
+  //   if (!user) {
+  //     throw new UnauthorizedException();
+  //   }
+  //   return user;
+  // }
 }
